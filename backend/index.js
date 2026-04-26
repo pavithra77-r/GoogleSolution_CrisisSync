@@ -1,7 +1,3 @@
-app.get("/", (req, res) => {
-  console.log("✅ Root endpoint hit");
-  res.status(200).send("CrisisSync backend is LIVE 🚀");
-});
 require("dotenv").config();
 process.on("uncaughtException", (err) => {
     console.log("❌ UNCAUGHT ERROR:", err);
@@ -20,6 +16,10 @@ const { sendAlertToRoles } = require("./notify");
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.status(200).send("CrisisSync backend is LIVE 🚀");
+});
 
 // ─── HEALTH CHECK ───────────────────────────────────────
 app.get("/", (req, res) => {
