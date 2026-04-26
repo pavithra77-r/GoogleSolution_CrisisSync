@@ -1,3 +1,7 @@
+app.get("/", (req, res) => {
+  console.log("✅ Root endpoint hit");
+  res.status(200).send("CrisisSync backend is LIVE 🚀");
+});
 require("dotenv").config();
 process.on("uncaughtException", (err) => {
     console.log("❌ UNCAUGHT ERROR:", err);
@@ -132,6 +136,11 @@ app.patch("/api/incidents/:id/resolve", async (req, res) => {
 
 // Start server
 const PORT = process.env.PORT || 3000;
+
+app.use((req, res) => {
+  console.log("⚠️ Unknown route hit:", req.url);
+  res.status(200).send("Fallback response working");
+});
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 CrisisSync server running on port ${PORT}`);
