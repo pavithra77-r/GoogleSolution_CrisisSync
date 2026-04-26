@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CrisisSync — Manager Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <h1>🚨 CrisisSync</h1>
+    <p>Hospitality Emergency Response Dashboard</p>
+  </div>
+
+  <div class="container">
+
+    <!-- SOS TRIGGER PANEL -->
+    <div class="card sos-card">
+      <h2>🆘 Report Emergency</h2>
+      <textarea id="emergencyDesc" 
+        placeholder="Describe the emergency... e.g. 'Guest in room 304 is unconscious and not breathing'" 
+        rows="4"></textarea>
+      <input type="text" id="reportedBy" placeholder="Your name / staff ID" />
+      <input type="text" id="location" placeholder="Location (e.g. Room 304, Lobby, Pool area)" />
+      <button id="sosBtn" onclick="reportEmergency()">🚨 TRIGGER SOS ALERT</button>
+      <div id="sosResult" class="result-box" style="display:none;"></div>
+    </div>
+
+    <!-- LIVE INCIDENTS PANEL -->
+    <div class="card">
+      <h2>📋 Live Incidents</h2>
+      <button onclick="loadIncidents()" class="refresh-btn">🔄 Refresh</button>
+      <div id="incidentsList">
+        <p style="color:#888;">Click Refresh to load incidents...</p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

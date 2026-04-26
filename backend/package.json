@@ -1,0 +1,15 @@
+{
+  "name": "crisissync-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "@google/generative-ai": "^0.1.3",
+    "@supabase/supabase-js": "^2.39.0"
+  }
+}

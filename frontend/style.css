@@ -1,0 +1,132 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0f0f;
+  color: #f0f0f0;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, #c0392b, #8e1010);
+  padding: 24px 32px;
+  text-align: center;
+}
+.header h1 { font-size: 2rem; letter-spacing: 2px; }
+.header p { color: #ffaaaa; margin-top: 4px; }
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 32px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .container { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid #2a2a2a;
+}
+
+.card h2 { margin-bottom: 16px; font-size: 1.2rem; }
+
+.sos-card { border-color: #c0392b; }
+
+textarea, input[type="text"] {
+  width: 100%;
+  background: #111;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+#sosBtn {
+  width: 100%;
+  background: #c0392b;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.2s;
+}
+#sosBtn:hover { background: #e74c3c; }
+#sosBtn:disabled { background: #555; cursor: not-allowed; }
+
+.refresh-btn {
+  background: #2a2a2a;
+  color: #ccc;
+  border: 1px solid #444;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+.refresh-btn:hover { background: #333; }
+
+.result-box {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #0a2a0a;
+  border: 1px solid #2d6a2d;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.incident-item {
+  background: #111;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid #c0392b;
+}
+
+.incident-item.resolved {
+  border-left-color: #27ae60;
+  opacity: 0.6;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.badge-critical { background: #c0392b; }
+.badge-high { background: #e67e22; }
+.badge-medium { background: #f39c12; color: #000; }
+.badge-low { background: #27ae60; }
+.badge-type { background: #2980b9; }
+.badge-role { background: #6c3483; }
+
+.sop-list { margin-top: 10px; padding-left: 16px; }
+.sop-list li { color: #aaa; font-size: 0.85rem; margin-bottom: 4px; }
+
+.resolve-btn {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
