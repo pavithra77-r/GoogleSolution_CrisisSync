@@ -17,10 +17,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(200).send("CrisisSync backend is LIVE 🚀");
-});
-
 // ─── HEALTH CHECK ───────────────────────────────────────
 app.get("/", (req, res) => {
     res.json({ status: "CrisisSync API is running ✅" });
