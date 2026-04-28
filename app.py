@@ -1,17 +1,17 @@
 import streamlit as st
-import folium
-from streamlit_folium import st_folium
-import plotly.express as px
-import pandas as pd
-from datetime import datetime
-from gemini_helper import classify_emergency
-from supabase_helper import (
-    save_incident, get_staff_for_roles, log_notification,
-    get_incidents, resolve_incident, get_analytics,
-    update_staff_location, get_staff_locations
-)
-from auth_helper import login_user, register_user, get_all_staff, toggle_staff_status
 
+try:
+    from supabase_helper import *
+except Exception as e:
+    st.error(f"❌ Supabase Error: {e}")
+    st.stop()
+
+try:
+    import folium
+    from streamlit_folium import st_folium
+except Exception as e:
+    st.error(f"❌ Map Error: {e}")
+    st.stop()
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(page_title="CrisisSync", page_icon="🚨", layout="wide")
 
