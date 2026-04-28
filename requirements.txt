@@ -2,3 +2,8 @@ streamlit
 supabase
 google-generativeai
 python-dotenv
+hashlib
+folium
+streamlit-folium
+plotly
+pandas

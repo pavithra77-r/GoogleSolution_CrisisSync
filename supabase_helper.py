@@ -1,6 +1,7 @@
 import os
 from supabase import create_client
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 
@@ -24,7 +25,7 @@ def save_incident(description, reported_by, location, classification):
     return result.data[0] if result.data else None
 
 def get_staff_for_roles(roles):
-    result = supabase.table("staff").select("*").in_("role", roles).execute()
+    result = supabase.table("users").select("*").in_("role", roles).eq("is_active", True).execute()
     return result.data or []
 
 def log_notification(incident_id, roles, staff_list):
@@ -34,13 +35,40 @@ def log_notification(incident_id, roles, staff_list):
         "staff_notified": [{"name": s["name"], "role": s["role"]} for s in staff_list]
     }).execute()
 
-def get_incidents():
-    result = supabase.table("incidents").select("*").order("timestamp", desc=True).limit(20).execute()
-    return result.data or []
+def get_incidents(status_filter=None, search_query=None):
+    query = supabase.table("incidents").select("*").order("timestamp", desc=True).limit(50)
+    if status_filter and status_filter != "All":
+        query = query.eq("status", status_filter.lower())
+    result = query.execute()
+    data = result.data or []
+    if search_query:
+        data = [i for i in data if search_query.lower() in (i.get("description","") + i.get("summary","") + i.get("location","")).lower()]
+    return data
 
 def resolve_incident(incident_id):
-    from datetime import datetime
     supabase.table("incidents").update({
         "status": "resolved",
         "resolved_at": datetime.utcnow().isoformat()
     }).eq("id", incident_id).execute()
+
+def get_analytics():
+    incidents = supabase.table("incidents").select("type,severity,status,timestamp").execute().data or []
+    return incidents
+
+def update_staff_location(user_id, name, role, lat, lng):
+    existing = supabase.table("staff_locations").select("id").eq("user_id", user_id).execute()
+    if existing.data:
+        supabase.table("staff_locations").update({
+            "latitude": lat, "longitude": lng,
+            "last_updated": datetime.utcnow().isoformat(),
+            "is_on_duty": True
+        }).eq("user_id", user_id).execute()
+    else:
+        supabase.table("staff_locations").insert({
+            "user_id": user_id, "staff_name": name,
+            "role": role, "latitude": lat, "longitude": lng
+        }).execute()
+
+def get_staff_locations():
+    result = supabase.table("staff_locations").select("*").eq("is_on_duty", True).execute()
+    return result.data or []
