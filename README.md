@@ -142,6 +142,3 @@ Built as part of a Google Solution Challenge submission.
 
 ---
 
-## 📄 License
-
-_Add your preferred license here (e.g. MIT)._
