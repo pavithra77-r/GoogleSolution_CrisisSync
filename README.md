@@ -2,7 +2,6 @@
 
 CrisisSync is a role-based emergency response platform built for hotels and hospitality venues. Guests and staff report incidents in plain language, Gemini AI instantly classifies the emergency type and severity, alerts the right team, and everyone can track the response live until it's resolved.
 
-**🔗 Live Demo:** _add your Streamlit app URL here_
 
 ---
 
